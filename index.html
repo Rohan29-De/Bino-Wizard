@@ -12,90 +12,106 @@
   <div class="blob-bl"></div>
 
   <div class="container">
+    <div class="desktop-grid">
 
-    <header class="header">
-      <div class="bino-badge">Bino · WhatsApp Search</div>
-      <h1>Find anything,<br>with <span class="hl">one message</span></h1>
-      <p class="subtitle">Describe what you need. Get the perfect Bino query — ready to fire on WhatsApp in one tap.</p>
-    </header>
+      <!-- ── LEFT COLUMN: header + input ── -->
+      <div class="col-left">
 
-    <div class="card">
-      <label class="label">What do you need?</label>
-      <textarea id="needInput" placeholder="e.g. Need a plumber urgently, leaking pipe at home…" rows="3"></textarea>
+        <header class="header">
+          <div class="bino-badge">Bino · WhatsApp Search</div>
+          <h1>Find anything,<br>with <span class="hl">one message</span></h1>
+          <p class="subtitle">Describe what you need. Get the perfect Bino query — ready to fire on WhatsApp in one tap.</p>
+        </header>
 
-      <span class="label chips-label">Quick category</span>
-      <div class="chips">
-        <div class="chip" data-val="Home Repairs">🔧 Home Repairs</div>
-        <div class="chip" data-val="Food & Catering">🍽 Food</div>
-        <div class="chip" data-val="Travel & Hotels">✈️ Travel</div>
-        <div class="chip" data-val="Healthcare">🏥 Healthcare</div>
-        <div class="chip" data-val="Vehicles">🚗 Vehicles</div>
-        <div class="chip" data-val="Professional Services">💼 Professional</div>
-        <div class="chip" data-val="Buy & Sell">🛒 Buy & Sell</div>
-        <div class="chip" data-val="Events">🎉 Events</div>
-      </div>
+        <div class="card">
+          <label class="label">What do you need?</label>
+          <textarea id="needInput" placeholder="e.g. Need a plumber urgently, leaking pipe at home…" rows="3"></textarea>
 
-      <div class="row">
-        <div>
-          <label class="label" style="margin-top:0">Your city</label>
-          <input type="text" id="cityInput" placeholder="e.g. Bangalore" />
+          <span class="label chips-label">Quick category</span>
+          <div class="chips">
+            <div class="chip" data-val="Home Repairs">🔧 Home Repairs</div>
+            <div class="chip" data-val="Food & Catering">🍽 Food</div>
+            <div class="chip" data-val="Travel & Hotels">✈️ Travel</div>
+            <div class="chip" data-val="Healthcare">🏥 Healthcare</div>
+            <div class="chip" data-val="Vehicles">🚗 Vehicles</div>
+            <div class="chip" data-val="Professional Services">💼 Professional</div>
+            <div class="chip" data-val="Buy & Sell">🛒 Buy & Sell</div>
+            <div class="chip" data-val="Events">🎉 Events</div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label class="label" style="margin-top:0">Your city</label>
+              <input type="text" id="cityInput" placeholder="e.g. Bangalore" />
+            </div>
+            <div>
+              <label class="label" style="margin-top:0">Budget (optional)</label>
+              <input type="text" id="budgetInput" placeholder="e.g. under ₹2000" />
+            </div>
+          </div>
+
+          <button class="btn-generate" id="generateBtn" onclick="generateQuery()">
+            ✦ Craft My Bino Message
+          </button>
         </div>
-        <div>
-          <label class="label" style="margin-top:0">Budget (optional)</label>
-          <input type="text" id="budgetInput" placeholder="e.g. under ₹2000" />
-        </div>
-      </div>
 
-      <button class="btn-generate" id="generateBtn" onclick="generateQuery()">
-        ✦ Craft My Bino Message
-      </button>
+      </div>
+      <!-- end col-left -->
+
+      <!-- ── RIGHT COLUMN: output + examples ── -->
+      <div class="col-right">
+
+        <!-- Output (hidden until generated) -->
+        <div class="output-card" id="outputCard">
+          <div class="output-header">
+            <span class="output-title">✦ Your Bino Message</span>
+            <button class="copy-btn" onclick="copyMessage()">Copy</button>
+          </div>
+          <div class="message-box" id="messageBox"></div>
+          <a class="btn-whatsapp" id="waLink" href="#" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Send on WhatsApp → Bino
+          </a>
+        </div>
+
+        <!-- Examples -->
+        <div class="examples-section">
+          <div class="section-title">People ask Bino things like…</div>
+          <div class="examples-grid">
+            <div class="example-card" onclick="fillExample(this)">
+              <div class="example-text">AC not cooling, need technician today in Koramangala</div>
+              <div class="example-icon"><img src="repair-tools.gif" alt="repair" /></div>
+            </div>
+            <div class="example-card" onclick="fillExample(this)">
+              <div class="example-text">Eggless birthday cake for 20 people, customised, Bangalore</div>
+              <div class="example-icon"><img src="cake.gif" alt="cake" /></div>
+            </div>
+            <div class="example-card" onclick="fillExample(this)">
+              <div class="example-text">Budget hotel in Goa near beach, 2 nights, 2 adults</div>
+              <div class="example-icon"><img src="hotel-rating-building-stars.gif" alt="hotel" /></div>
+            </div>
+            <div class="example-card" onclick="fillExample(this)">
+              <div class="example-text">Small car dent repair, want 3 quotes, North Bangalore</div>
+              <div class="example-icon"><img src="car.gif" alt="car" /></div>
+            </div>
+            <div class="example-card" onclick="fillExample(this)">
+              <div class="example-text">Medicine home delivery, Dolo 650 and vitamin D, urgent</div>
+              <div class="example-icon"><img src="medicine.gif" alt="medicine" /></div>
+            </div>
+            <div class="example-card" onclick="fillExample(this)">
+              <div class="example-text">CA needed for GST filing for small freelance business</div>
+              <div class="example-icon"><img src="notepad.gif" alt="notepad" /></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- end col-right -->
+
     </div>
-
-    <div class="output-card" id="outputCard">
-      <div class="output-header">
-        <span class="output-title">✦ Your Bino Message</span>
-        <button class="copy-btn" onclick="copyMessage()">Copy</button>
-      </div>
-      <div class="message-box" id="messageBox"></div>
-      <a class="btn-whatsapp" id="waLink" href="#" target="_blank">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        Send on WhatsApp → Bino
-      </a>
-    </div>
-
-    <hr class="divider" />
-
-    <div class="examples-section">
-      <div class="section-title">People ask Bino things like…</div>
-      <div class="examples-grid">
-        <div class="example-card" onclick="fillExample(this)">
-          <div class="example-text">AC not cooling, need technician today in Koramangala</div>
-          <div class="example-icon"><img src="repair-tools.gif" alt="repair" /></div>
-        </div>
-        <div class="example-card" onclick="fillExample(this)">
-          <div class="example-text">Eggless birthday cake for 20 people, customised, Bangalore</div>
-          <div class="example-icon"><img src="cake.gif" alt="cake" /></div>
-        </div>
-        <div class="example-card" onclick="fillExample(this)">
-          <div class="example-text">Budget hotel in Goa near beach, 2 nights, 2 adults</div>
-          <div class="example-icon"><img src="hotel-rating-building-stars.gif" alt="hotel" /></div>
-        </div>
-        <div class="example-card" onclick="fillExample(this)">
-          <div class="example-text">Small car dent repair, want 3 quotes, North Bangalore</div>
-          <div class="example-icon"><img src="car.gif" alt="car" /></div>
-        </div>
-        <div class="example-card" onclick="fillExample(this)">
-          <div class="example-text">Medicine home delivery, Dolo 650 and vitamin D, urgent</div>
-          <div class="example-icon"><img src="medicine.gif" alt="medicine" /></div>
-        </div>
-        <div class="example-card" onclick="fillExample(this)">
-          <div class="example-text">CA needed for GST filing for small freelance business</div>
-          <div class="example-icon"><img src="notepad.gif" alt="notepad" /></div>
-        </div>
-      </div>
-    </div>
+    <!-- end desktop-grid -->
 
     <footer class="footer">
       Built for <a href="https://bino.bot" target="_blank">bino.bot</a> · Crafted by Rohan Sharma

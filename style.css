@@ -1,13 +1,11 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --cream:  #F1FFE7;
-  --mint:   #A9FDAC;
-  --green:  #44CF6C;
-  --teal:   #32A287;
-  --mauve:  #6C464E;
-
-  --bg:      var(--cream);
+  --cream:   #F1FFE7;
+  --mint:    #A9FDAC;
+  --green:   #44CF6C;
+  --teal:    #32A287;
+  --mauve:   #6C464E;
   --surface: #ffffff;
   --border:  #caf0d1;
   --text:    #1c1418;
@@ -19,14 +17,14 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
+  background: var(--cream);
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* ─── Background ─── */
+/* ─── Background dot grid ─── */
 body::before {
   content: '';
   position: fixed;
@@ -39,10 +37,8 @@ body::before {
 
 .blob-tr {
   position: fixed;
-  top: -140px;
-  right: -100px;
-  width: 500px;
-  height: 500px;
+  top: -140px; right: -100px;
+  width: 500px; height: 500px;
   background: radial-gradient(ellipse, rgba(169,253,172,0.6) 0%, transparent 68%);
   border-radius: 50%;
   pointer-events: none;
@@ -51,29 +47,44 @@ body::before {
 
 .blob-bl {
   position: fixed;
-  bottom: -120px;
-  left: -80px;
-  width: 380px;
-  height: 380px;
+  bottom: -120px; left: -80px;
+  width: 380px; height: 380px;
   background: radial-gradient(ellipse, rgba(50,162,135,0.2) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
 }
 
-/* ─── Layout ─── */
+/* ─── Page wrapper ─── */
 .container {
   position: relative;
   z-index: 1;
-  max-width: 720px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 64px 24px 88px;
+  padding: 48px 40px 80px;
+}
+
+/* ─── Desktop: two-column layout ─── */
+.desktop-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Left col: header + input card */
+.col-left {}
+
+/* Right col: output + examples */
+.col-right {
+  position: sticky;
+  top: 32px;
 }
 
 /* ─── Header ─── */
 .header {
-  text-align: center;
-  margin-bottom: 52px;
+  text-align: left;
+  margin-bottom: 28px;
   animation: fadeUp 0.55s ease both;
 }
 
@@ -89,13 +100,12 @@ body::before {
   color: var(--mint);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .bino-badge::before {
   content: '';
-  width: 7px;
-  height: 7px;
+  width: 7px; height: 7px;
   background: var(--mint);
   border-radius: 50%;
   box-shadow: 0 0 8px var(--mint);
@@ -104,12 +114,12 @@ body::before {
 
 h1 {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(2.4rem, 6vw, 3.9rem);
+  font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 800;
   line-height: 1.07;
   letter-spacing: -0.03em;
   color: var(--mauve);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 h1 .hl {
@@ -121,9 +131,7 @@ h1 .hl {
 h1 .hl::after {
   content: '';
   position: absolute;
-  bottom: 0px;
-  left: 0;
-  right: 0;
+  bottom: 0px; left: 0; right: 0;
   height: 4px;
   background: var(--green);
   border-radius: 3px;
@@ -131,20 +139,18 @@ h1 .hl::after {
 
 .subtitle {
   color: var(--muted);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 400;
   line-height: 1.65;
-  max-width: 380px;
-  margin: 0 auto;
+  max-width: 360px;
 }
 
-/* ─── Card ─── */
+/* ─── Input card ─── */
 .card {
   background: var(--surface);
   border: 1.5px solid var(--border);
   border-radius: 22px;
-  padding: 32px;
-  margin-bottom: 22px;
+  padding: 28px;
   box-shadow: 0 4px 28px rgba(108, 70, 78, 0.06);
   animation: fadeUp 0.55s ease 0.08s both;
 }
@@ -167,9 +173,9 @@ textarea {
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
   font-size: 1rem;
-  padding: 16px 18px;
+  padding: 14px 16px;
   resize: none;
-  min-height: 96px;
+  min-height: 88px;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
   line-height: 1.65;
@@ -183,12 +189,12 @@ textarea:focus {
 }
 
 /* ─── Chips ─── */
-.chips-label { margin-top: 22px; }
+.chips-label { margin-top: 20px; }
 
 .chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 7px;
   margin-top: 10px;
 }
 
@@ -196,8 +202,8 @@ textarea:focus {
   background: var(--pill);
   border: 1.5px solid var(--border);
   border-radius: 100px;
-  padding: 6px 14px;
-  font-size: 13px;
+  padding: 5px 12px;
+  font-size: 12.5px;
   color: var(--muted);
   cursor: pointer;
   transition: all 0.15s;
@@ -215,16 +221,12 @@ textarea:focus {
   color: #fff;
 }
 
-/* ─── Row inputs ─── */
+/* ─── City / Budget row ─── */
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 22px;
-}
-
-@media (max-width: 500px) {
-  .row { grid-template-columns: 1fr; }
+  gap: 14px;
+  margin-top: 20px;
 }
 
 input[type="text"] {
@@ -234,8 +236,8 @@ input[type="text"] {
   border-radius: 12px;
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
-  font-size: 0.95rem;
-  padding: 12px 14px;
+  font-size: 0.92rem;
+  padding: 11px 13px;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -250,8 +252,8 @@ input[type="text"]:focus {
 /* ─── Generate button ─── */
 .btn-generate {
   width: 100%;
-  margin-top: 24px;
-  padding: 17px;
+  margin-top: 20px;
+  padding: 15px;
   background: #25D366;
   color: #fff;
   border: none;
@@ -278,8 +280,8 @@ input[type="text"]:focus {
   background: var(--surface);
   border: 1.5px solid var(--green);
   border-radius: 22px;
-  padding: 28px 32px;
-  margin-bottom: 16px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
   box-shadow: 0 0 0 4px rgba(68, 207, 108, 0.09), 0 8px 28px rgba(68, 207, 108, 0.1);
   animation: fadeUp 0.4s ease both;
   display: none;
@@ -291,7 +293,7 @@ input[type="text"]:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .output-title {
@@ -314,21 +316,18 @@ input[type="text"]:focus {
   transition: all 0.15s;
 }
 
-.copy-btn:hover {
-  border-color: var(--teal);
-  color: var(--teal);
-}
+.copy-btn:hover { border-color: var(--teal); color: var(--teal); }
 
 .message-box {
   background: var(--cream);
   border-radius: 14px;
-  padding: 18px 20px;
-  font-size: 0.97rem;
+  padding: 16px 18px;
+  font-size: 0.95rem;
   line-height: 1.75;
   white-space: pre-wrap;
   color: var(--text);
   border: 1.5px solid var(--border);
-  min-height: 70px;
+  min-height: 64px;
 }
 
 /* ─── Typing dots ─── */
@@ -340,8 +339,7 @@ input[type="text"]:focus {
 }
 
 .typing span {
-  width: 8px;
-  height: 8px;
+  width: 8px; height: 8px;
   background: var(--green);
   border-radius: 50%;
   animation: dot 1.2s infinite;
@@ -357,7 +355,7 @@ input[type="text"]:focus {
   justify-content: center;
   gap: 10px;
   width: 100%;
-  padding: 16px;
+  padding: 14px;
   background: var(--green);
   border: none;
   border-radius: 14px;
@@ -368,7 +366,7 @@ input[type="text"]:focus {
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s;
-  margin-top: 14px;
+  margin-top: 12px;
 }
 
 .btn-whatsapp:hover {
@@ -377,22 +375,12 @@ input[type="text"]:focus {
   box-shadow: 0 10px 28px rgba(50, 162, 135, 0.32);
 }
 
-/* ─── Divider ─── */
-.divider {
-  height: 1.5px;
-  background: linear-gradient(90deg, transparent, var(--mint), transparent);
-  border: none;
-  margin: 36px 0;
-}
-
 /* ─── Examples section ─── */
-.examples-section {
-  animation: fadeUp 0.55s ease 0.2s both;
-}
+.examples-section { }
 
 .section-title {
   font-family: 'Syne', sans-serif;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 700;
   margin-bottom: 16px;
   color: var(--mauve);
@@ -400,7 +388,7 @@ input[type="text"]:focus {
 
 .examples-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(188px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
   padding-bottom: 32px;
 }
@@ -409,7 +397,7 @@ input[type="text"]:focus {
   background: var(--surface);
   border: 1.5px solid var(--border);
   border-radius: 18px;
-  padding: 20px 16px 44px;
+  padding: 18px 14px 42px;
   cursor: pointer;
   transition: all 0.22s;
   position: relative;
@@ -418,13 +406,13 @@ input[type="text"]:focus {
 
 .example-card:hover {
   border-color: var(--green);
-  transform: translateY(-4px);
-  box-shadow: 0 10px 28px rgba(68, 207, 108, 0.16);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(68, 207, 108, 0.16);
 }
 
 .example-text {
   font-family: 'Syne', sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--mauve);
   line-height: 1.4;
@@ -433,11 +421,10 @@ input[type="text"]:focus {
 
 .example-icon {
   position: absolute;
-  bottom: -24px;
+  bottom: -22px;
   left: 50%;
   transform: translateX(-50%);
-  width: 48px;
-  height: 48px;
+  width: 44px; height: 44px;
   background: #fff;
   border: 1.5px solid var(--border);
   border-radius: 50%;
@@ -450,8 +437,7 @@ input[type="text"]:focus {
 }
 
 .example-icon img {
-  width: 34px;
-  height: 34px;
+  width: 30px; height: 30px;
   object-fit: contain;
 }
 
@@ -460,19 +446,63 @@ input[type="text"]:focus {
   box-shadow: 0 0 0 3px rgba(68, 207, 108, 0.15);
 }
 
+/* ─── Divider (mobile only) ─── */
+.divider {
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--mint), transparent);
+  border: none;
+  margin: 32px 0;
+  display: none;
+}
+
 /* ─── Footer ─── */
 .footer {
   text-align: center;
-  margin-top: 56px;
+  margin-top: 48px;
   color: var(--muted);
   font-size: 0.78rem;
   font-family: 'DM Mono', monospace;
-  animation: fadeUp 0.55s ease 0.28s both;
 }
 
-.footer a {
-  color: var(--teal);
-  text-decoration: none;
+.footer a { color: var(--teal); text-decoration: none; }
+
+/* ═══════════════════════════════════════
+   MOBILE: single column, original layout
+   ═══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 18px 72px;
+  }
+
+  .desktop-grid {
+    display: block;
+  }
+
+  .col-right {
+    position: static;
+    margin-top: 20px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  h1 { font-size: clamp(2.2rem, 7vw, 2.8rem); }
+
+  .subtitle { max-width: 100%; margin: 0 auto; }
+
+  .examples-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+
+  .divider { display: block; }
+
+  .row { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 400px) {
+  .row { grid-template-columns: 1fr; }
 }
 
 /* ─── Animations ─── */
