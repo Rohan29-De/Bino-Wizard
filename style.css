@@ -61,7 +61,7 @@ body::before {
   z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 40px 80px;
+  padding: 32px 40px 48px;
 }
 
 /* ─── Desktop: two-column layout ─── */
@@ -81,10 +81,19 @@ body::before {
   top: 32px;
 }
 
+/* No gap above examples when output is hidden */
+.output-card + .examples-section {
+  margin-top: 0;
+}
+
+.output-card.visible + .examples-section {
+  margin-top: 24px;
+}
+
 /* ─── Header ─── */
 .header {
   text-align: left;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   animation: fadeUp 0.55s ease both;
 }
 
