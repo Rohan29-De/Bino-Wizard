@@ -58,7 +58,12 @@ Rules:
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ systemPrompt, userPrompt })
+      body: JSON.stringify({
+        userNeed: need,
+        city,
+        budget,
+        category: selectedCategory
+      })
     });
 
     const data = await response.json();
