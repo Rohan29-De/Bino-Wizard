@@ -287,16 +287,19 @@ input[type="text"]:focus {
 /* ─── Output card ─── */
 .output-card {
   background: var(--surface);
-  border: 1.5px solid var(--green);
+  border: 1.5px solid var(--border);
   border-radius: 22px;
   padding: 24px 28px;
   margin-bottom: 24px;
-  box-shadow: 0 0 0 4px rgba(68, 207, 108, 0.09), 0 8px 28px rgba(68, 207, 108, 0.1);
+  box-shadow: 0 4px 28px rgba(108, 70, 78, 0.06);
   animation: fadeUp 0.4s ease both;
-  display: none;
+  display: block;
 }
 
-.output-card.visible { display: block; }
+.output-card.visible {
+  border-color: var(--green);
+  box-shadow: 0 0 0 4px rgba(68, 207, 108, 0.09), 0 8px 28px rgba(68, 207, 108, 0.1);
+}
 
 .output-header {
   display: flex;
@@ -339,27 +342,14 @@ input[type="text"]:focus {
   min-height: 64px;
 }
 
-/* ─── Typing dots ─── */
-.typing {
-  display: inline-flex;
-  gap: 5px;
-  align-items: center;
-  padding: 4px 0;
+.placeholder-text {
+  color: #adc8b5;
+  font-style: italic;
+  font-size: 0.9rem;
 }
 
-.typing span {
-  width: 8px; height: 8px;
-  background: var(--green);
-  border-radius: 50%;
-  animation: dot 1.2s infinite;
-}
-
-.typing span:nth-child(2) { animation-delay: 0.2s; }
-.typing span:nth-child(3) { animation-delay: 0.4s; }
-
-/* ─── WhatsApp button ─── */
 .btn-whatsapp {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   gap: 10px;
@@ -378,11 +368,32 @@ input[type="text"]:focus {
   margin-top: 12px;
 }
 
+.output-card.visible .btn-whatsapp {
+  display: flex;
+}
+
 .btn-whatsapp:hover {
   background: var(--teal);
   transform: translateY(-2px);
   box-shadow: 0 10px 28px rgba(50, 162, 135, 0.32);
 }
+/* ─── Typing dots ─── */
+.typing {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.typing span {
+  width: 8px; height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: dot 1.2s infinite;
+}
+
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
 
 /* ─── Examples section ─── */
 .examples-section { }

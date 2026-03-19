@@ -78,7 +78,8 @@ Rules:
 
   } catch (err) {
     console.error(err);
-    messageBox.textContent = 'Something went wrong. Please try again.';
+    messageBox.innerHTML = '<span class="placeholder-text">Something went wrong. Please try again.</span>';
+    outputCard.classList.remove('visible');
   }
 
   btn.classList.remove('loading');
