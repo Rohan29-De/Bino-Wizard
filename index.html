@@ -576,6 +576,7 @@
     </footer>
   </div>
 
+  <script src="config.js"></script>
   <script>
     const BINO_NUMBER = '919800081110';
     let generatedMessage = '';
@@ -635,8 +636,7 @@ Rules:
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    // Set this value in your deployment environment, not in version control.
-    'Authorization': 'Bearer YOUR_GROQ_API_KEY'
+    'Authorization': `Bearer ${GROQ_API_KEY}`
   },
   body: JSON.stringify({
     model: 'llama-3.3-70b-versatile',
